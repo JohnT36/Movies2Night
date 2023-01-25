@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using System.Configuration;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,11 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IDbConnection>((s) =>
 {
-    IDbConnection conn = new MySqlConnection(connection);
-    // Open before you can send a request to the DB //
+    IDbConnection conn = new MySqlConnection("bestbuy");
     conn.Open();
     return conn;
 });
+
+builder.Services.AddTransient<IMovieClient, MovieClient>();
+
+builder.Services.AddTransient<IMovieRepo, MovieRepo>();
 
 builder.Services.AddControllersWithViews();
 

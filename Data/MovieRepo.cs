@@ -1,6 +1,11 @@
 ﻿namespace Movies2Night.Data
 {
-    public class MovieRepo
+    public class MovieRepo : IMovieRepo
     {
+
+        public MovieRepo()
+        {
+
+        }
     }
 }
