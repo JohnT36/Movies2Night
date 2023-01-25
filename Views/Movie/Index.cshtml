@@ -1,10 +1,14 @@
 ﻿@model ShortMovieApi
 
-@foreach(Search x in Model)
+@foreach(var x in Model.Search)
 {
-    <h3>@x.Title</h3>
-    <p>@x.Year</p>
-    <img src="@x.Poster"/>
+    <h3>
+        @x.Title
+    </h3>
+    <p>
+        @x.Year
+    </p>
+    <img src="@x.Poster" />
 }
 
 

@@ -6,10 +6,10 @@ namespace Movies2Night.Client
 {
     public class MovieClient : IMovieClient
     {
-        private readonly HttpClient client;
-        public MovieClient(HttpClient _client)
+        readonly HttpClient client = new HttpClient();
+        public MovieClient()
         {
-            client = _client;
+            
 
         }
 

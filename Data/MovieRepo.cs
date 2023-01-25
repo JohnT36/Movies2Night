@@ -1,11 +1,16 @@
-﻿namespace Movies2Night.Data
+﻿using System.Data;
+
+namespace Movies2Night.Data
 {
     public class MovieRepo : IMovieRepo
     {
+        private readonly IDbConnection _conn;
 
-        public MovieRepo()
+        public MovieRepo(IDbConnection conn)
         {
-
+            _conn = conn;
         }
+
+
     }
 }

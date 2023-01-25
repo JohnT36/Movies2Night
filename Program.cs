@@ -1,23 +1,31 @@
+using Movies2Night.Client;
+using Movies2Night.Data;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddControllersWithViews();
 
+var connection = builder.Configuration.GetConnectionString("bestbuy");
+// During the scope of my request // 
 builder.Services.AddScoped<IDbConnection>((s) =>
 {
-    IDbConnection conn = new MySqlConnection("bestbuy");
+    IDbConnection conn = new MySqlConnection(connection);
+    // Open before you can send a request to the DB //
     conn.Open();
     return conn;
 });
 
-builder.Services.AddTransient<IMovieClient, MovieClient>();
-
+// Adding Dependency Injection for my DB //
 builder.Services.AddTransient<IMovieRepo, MovieRepo>();
 
-builder.Services.AddControllersWithViews();
+// Dependency Injection for the API //
+builder.Services.AddTransient<IMovieClient, MovieClient>();
+
+
+
 
 var app = builder.Build();
 
