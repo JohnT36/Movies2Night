@@ -1,14 +1,17 @@
 ﻿@model ShortMovieApi
 
-@foreach(var x in Model.Search)
+@foreach(var movie in Model.Search)
 {
     <h3>
-        @x.Title
+        @movie.Title
     </h3>
     <p>
-        @x.Year
+        @movie.Year
     </p>
-    <img src="@x.Poster" />
+    <img src="@movie.Poster" />
+    <form asp-controller="Movie" asp-action="AddToFavorites">        
+        <button type="submit" value="@movie.imdbID" name="movieToAddID" >Add To Favs</button>
+    </form>
 }
 
 

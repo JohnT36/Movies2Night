@@ -22,5 +22,19 @@ namespace Movies2Night.Controllers
 
             return View(movies.Result);
         }
+
+        public IActionResult AddToFavorites()
+        {
+            var movieToAddID = Request.Form["movieToAddID"];
+            var movieToAdd = _client.GetMovieByID(movieToAddID);
+            _conn.AddToFavorites(movieToAdd.Result);
+            return RedirectToAction("Favorites");
+        }
+
+        public IActionResult Favorites()
+        {
+            var favMovies = _conn.GetAllFavorites();
+            return View(favMovies);
+        }
     }
 }

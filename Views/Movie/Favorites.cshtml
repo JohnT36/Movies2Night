@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Search>
+
+@foreach (var x in Model)
+{
+    <h2> @x.Title</h2>
+    <p>@x.Year</p>
+    <img src="@x.Poster" />
+}

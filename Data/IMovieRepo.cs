@@ -4,7 +4,9 @@ namespace Movies2Night.Data
 {
     public interface IMovieRepo
     {
-        public void AddToFavorites(Search movie);
+        public void AddToFavorites(LongMovieApi movie);
+
+        public IEnumerable<Search> GetAllFavorites();
         public void RemoveFromFavorites(Search movie);
     }
 }
