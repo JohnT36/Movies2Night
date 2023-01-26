@@ -25,9 +25,9 @@ namespace Movies2Night.Data
             return _conn.Query<Search>("SELECT * FROM movies;");
         }
 
-        public void RemoveFromFavorites(Search movie)
+        public void RemoveFromFavorites(string id)
         {
-            _conn.Execute("Delete From movie where imdbID = @imdbID", new { imdbID = movie.imdbID, });
+            _conn.Execute("Delete From movies where imdbID = @imdbID", new { imdbID = id, });
         }
     }
 }

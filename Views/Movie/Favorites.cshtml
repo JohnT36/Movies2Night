@@ -5,4 +5,7 @@
     <h2> @x.Title</h2>
     <p>@x.Year</p>
     <img src="@x.Poster" />
+    <form asp-controller="Movie" asp-action="RemoveFromFavorites">
+        <button name="mTR" type="submit" value="@x.imdbID">Remove </button>
+    </form>
 }

@@ -25,9 +25,22 @@ namespace Movies2Night.Controllers
 
         public IActionResult AddToFavorites()
         {
+            var allMovies = _conn.GetAllFavorites();
+            var isDuplicate = false;            
             var movieToAddID = Request.Form["movieToAddID"];
             var movieToAdd = _client.GetMovieByID(movieToAddID);
-            _conn.AddToFavorites(movieToAdd.Result);
+            foreach (var movie in allMovies)
+            {
+                if (movie.imdbID == movieToAdd.Result.imdbID)
+                {
+                    isDuplicate = true;
+                }
+            }
+            if (!isDuplicate)
+            {
+                _conn.AddToFavorites(movieToAdd.Result);
+            }
+            
             return RedirectToAction("Favorites");
         }
 
@@ -35,6 +48,14 @@ namespace Movies2Night.Controllers
         {
             var favMovies = _conn.GetAllFavorites();
             return View(favMovies);
+        }
+
+        public IActionResult RemoveFromFavorites() 
+        {
+            var movieToRemove = Request.Form["mTR"];
+            _conn.RemoveFromFavorites(movieToRemove);
+            return RedirectToAction("Favorites");
+            
         }
     }
 }

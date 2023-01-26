@@ -7,6 +7,6 @@ namespace Movies2Night.Data
         public void AddToFavorites(LongMovieApi movie);
 
         public IEnumerable<Search> GetAllFavorites();
-        public void RemoveFromFavorites(Search movie);
+        public void RemoveFromFavorites(string id);
     }
 }
